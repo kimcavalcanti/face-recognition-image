@@ -60,7 +60,7 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
 && rm -r /opencv-${OPENCV_VERSION}
 
 RUN wget https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.10.0-gpu-9.2-tensorrt-mkl/tensorflow-1.10.0-cp36-cp36m-linux_x86_64.whl && \
-        pip install --no-cache-dir tf-1.10.0-gpu-9.2-tensorrt-mkl/tensorflow-1.10.0-cp36-cp36m-linux_x86_64.whl
+        pip install --no-cache-dir tensorflow-1.10.0-cp36-cp36m-linux_x86_64.whl
 
 RUN pip install opencv-contrib-python && \
         pip install pytesseract && \
@@ -131,7 +131,6 @@ RUN pip install opencv-contrib-python && \
         pip install requests
 
 RUN python3.6 -m spacy download pt
-
 
 RUN apt-get update && \
         apt-get install -y \
