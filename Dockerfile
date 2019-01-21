@@ -151,3 +151,6 @@ RUN apt-get update && \
         libhdf5-serial-dev \
         libqtgui4 \
         libqt4-test
+
+RUN apt-get install -y --no-install-recommends ffmpeg && \
+        pip install ffmpeg
