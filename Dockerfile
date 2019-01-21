@@ -1,8 +1,8 @@
 FROM ubuntu:16.04
 
 RUN apt-get update && \
-  apt-get install -y software-properties-common vim && \
-  add-apt-repository ppa:jonathonf/python-3.6
+        apt-get install -y software-properties-common vim && \
+        add-apt-repository ppa:jonathonf/python-3.6
 RUN apt-get update -y
 
 RUN apt-get install -y build-essential python3.6 python3.6-dev python3-pip python3.6-venv && \
@@ -35,32 +35,32 @@ RUN pip install numpy==1.15.0
 WORKDIR /
 ENV OPENCV_VERSION="3.4.2"
 RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
-&& unzip ${OPENCV_VERSION}.zip \
-&& mkdir /opencv-${OPENCV_VERSION}/cmake_binary \
-&& cd /opencv-${OPENCV_VERSION}/cmake_binary \
-&& cmake -DBUILD_TIFF=ON \
-  -DBUILD_opencv_java=OFF \
-  -DWITH_CUDA=OFF \
-  -DWITH_OPENGL=ON \
-  -DWITH_OPENCL=ON \
-  -DWITH_IPP=ON \
-  -DWITH_TBB=ON \
-  -DWITH_EIGEN=ON \
-  -DWITH_V4L=ON \
-  -DBUILD_TESTS=OFF \
-  -DBUILD_PERF_TESTS=OFF \
-  -DCMAKE_BUILD_TYPE=RELEASE \
-  -DCMAKE_INSTALL_PREFIX=$(python3.6 -c "import sys; print(sys.prefix)") \
-  -DPYTHON_EXECUTABLE=$(which python3.6) \
-  -DPYTHON_INCLUDE_DIR=$(python3.6 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
-  -DPYTHON_PACKAGES_PATH=$(python3.6 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
-  .. \
-&& make install \
-&& rm /${OPENCV_VERSION}.zip \
-&& rm -r /opencv-${OPENCV_VERSION}
-
-RUN wget https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.10.0-gpu-9.2-tensorrt-mkl/tensorflow-1.10.0-cp36-cp36m-linux_x86_64.whl && \
-        pip install --no-cache-dir tensorflow-1.10.0-cp36-cp36m-linux_x86_64.whl
+        && unzip ${OPENCV_VERSION}.zip \
+        && mkdir /opencv-${OPENCV_VERSION}/cmake_binary \
+        && cd /opencv-${OPENCV_VERSION}/cmake_binary \
+        && cmake -DBUILD_TIFF=ON \
+        -DBUILD_opencv_java=OFF \
+        -DWITH_CUDA=OFF \
+        -DWITH_OPENGL=ON \
+        -DWITH_OPENCL=ON \
+        -DWITH_IPP=ON \
+        -DWITH_TBB=ON \
+        -DWITH_EIGEN=ON \
+        -DWITH_V4L=ON \
+        -DBUILD_TESTS=OFF \
+        -DBUILD_PERF_TESTS=OFF \
+        -DCMAKE_BUILD_TYPE=RELEASE \
+        -DCMAKE_INSTALL_PREFIX=$(python3.6 -c "import sys; print(sys.prefix)") \
+        -DPYTHON_EXECUTABLE=$(which python3.6) \
+        -DPYTHON_INCLUDE_DIR=$(python3.6 -c "from distutils.sysconfig import get_python_inc; print(get_python_inc())") \
+        -DPYTHON_PACKAGES_PATH=$(python3.6 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())") \
+        .. \
+        && make install \
+        && rm /${OPENCV_VERSION}.zip \
+        && rm -r /opencv-${OPENCV_VERSION}
+        
+RUN wget https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.8-cpu-westmere/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl && \
+        pip install --no-cache-dir tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl
 
 RUN pip install opencv-contrib-python && \
         pip install pytesseract && \
@@ -128,14 +128,19 @@ RUN pip install opencv-contrib-python && \
         pip install Werkzeug==0.14.1 && \
         pip install widgetsnbextension==3.1.3 && \
         pip install elasticsearch && \
-        pip install requests
+        pip install requests && \
+        pip install scikit-video && \
+        pip install scikit-image && \
+        pip install Shapely && \
+        pip install imgaug
 
 RUN python3.6 -m spacy download pt
+
 
 RUN apt-get update && \
         apt-get install -y \
         tesseract-ocr
-        
+
 RUN apt-get update && \
         apt-get install -y \
         libhdf5-dev
