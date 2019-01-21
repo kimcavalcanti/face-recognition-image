@@ -136,6 +136,7 @@ RUN pip install opencv-contrib-python && \
 
 RUN python3.6 -m spacy download pt
 
+RUN apt-get install -y python3-tk
 
 RUN apt-get update && \
         apt-get install -y \
