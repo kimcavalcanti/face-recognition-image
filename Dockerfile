@@ -59,8 +59,8 @@ RUN wget https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip \
         && rm /${OPENCV_VERSION}.zip \
         && rm -r /opencv-${OPENCV_VERSION}
         
-RUN wget https://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.8-cpu-westmere/tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl && \
-        pip install --no-cache-dir tensorflow-1.8.0-cp36-cp36m-linux_x86_64.whl
+RUN wget https://github.com/lakshayg/tensorflow-build/releases/download/tf1.12.0-macOS-mojave-ubuntu16.04-py2-py3/tensorflow-1.12.0-cp35-cp35m-linux_x86_64.whl && \
+        pip install --no-cache-dir tensorflow-1.12.0-cp35-cp35m-linux_x86_64.whl
 
 RUN pip install opencv-contrib-python && \
         pip install pytesseract && \
